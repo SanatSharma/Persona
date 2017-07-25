@@ -195,7 +195,7 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
     public void surfaceChanged(SurfaceHolder holder, int format, int w,
                                int h) {
         if (mPreviewRunning) {
-            //  mCamera.stopPreview();
+              mCamera.stopPreview();
         }
         Camera.Parameters p = mCamera.getParameters();
         List<Camera.Size> previewSizes = p.getSupportedPreviewSizes();
@@ -268,7 +268,7 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
     Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
         @SuppressWarnings("ConstantConditions")
         public void onPictureTaken(byte[] data, Camera c) {
-            c.startPreview();
+            
 
             try {
                 File f = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/"
