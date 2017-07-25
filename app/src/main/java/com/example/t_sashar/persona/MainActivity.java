@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
-        if (settings.getBoolean("first_launch", true)) {
-            //the app is being launched for first time, do something
+        if (settings.getString("name", "0") == "0") {
+            // profile has not been made
             Log.d("Comments", "First time");
 
             // first time task
@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
             // record the fact that the app has been started at least once
             settings.edit().putBoolean("first_launch", false).apply();
         } else {
+
+            Log.v("NAME ", settings.getString("name", "0"));
             final Intent i = new Intent(this, HomeActivity.class);
 
             Handler handler = new Handler();

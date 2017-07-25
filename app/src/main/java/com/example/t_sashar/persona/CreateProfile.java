@@ -1,5 +1,6 @@
 package com.example.t_sashar.persona;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,16 +64,24 @@ public class CreateProfile extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = profile.edit();
 
+                Log.v("HEERERRERERER", name_pref);
+
                 editor.putString("name", name_pref);
                 editor.putString("email", email_pref);
                 editor.putString("number", number_pref);
                 editor.putString("organization", org_pref);
+                editor.apply();
+
+                Log.v("NAMEEEEEEEE", getSharedPreferences(PREFS_NAME, 0).getString("name", "0"));
 
                 if (name_pref.equals("") || email_pref.equals("") || number_pref.equals("") ||
                         org_pref.equals("") ) {
                     Toast.makeText(getApplicationContext(), "Blank Field, please enter all values and submit", Toast.LENGTH_SHORT).show();
                 } else {
-                    send
+                    //sendServerMessage()
+
+                    Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+                    startActivity(i);
                 }
             }
         });
