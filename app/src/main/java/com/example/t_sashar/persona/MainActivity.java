@@ -13,9 +13,16 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+
+import java.net.MalformedURLException;
+
 public class MainActivity extends AppCompatActivity {
 
     final String PREFS_NAME = "MyPrefsFile";
+    BusinessCard mBusinessCard;
+    private MobileServiceClient mClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        mBusinessCard = new BusinessCard("Name", "Email", "User");
+        try {
+            mClient = new MobileServiceClient("https://hackathon-persona.azurewebsites.net",
+                    this);
+        } catch (MalformedURLException e) {
+            new Exception("There was an error creating the Mobile Service. Verify the URL");
+        }
+        mClient.getTable(BusinessCard.class).insert(mBusinessCard);
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
@@ -71,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     }, 1000
             );
         }
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
