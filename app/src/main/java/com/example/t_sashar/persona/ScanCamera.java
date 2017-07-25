@@ -97,7 +97,9 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
 
-        getSupportActionBar().hide();
+        // hide the action bar
+        if (getSupportActionBar() != null)
+            getSupportActionBar().hide();
 
 
         mSurfaceView = (SurfaceView) findViewById(R.id.camera);
@@ -111,12 +113,12 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
 
         if(mCamera != null) {
             mCamera.release();
-            Log.v("HERRE", "reached here");
         }
         mCamera = Camera.open();
 
         Log.v("Camera opened",mCamera.getParameters().getFlashMode());
 
+        // take a picture when the camera button is clicked
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,6 +139,10 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         cameraThread.run();
 
     }
+
+    /**
+        Open the camera instance. Log any errors if seen.
+     */
     private void openHelper(){
         try{
             mCamera = Camera.open();
@@ -147,15 +153,6 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         }
     }
 
-
-
-    private void toggle() {
-        if (mVisible) {
-            hide();
-        } else {
-            show();
-        }
-    }
 
     private void hide() {
         // Hide UI first
@@ -227,6 +224,13 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
 
     }
 
+    /**
+     * getOptimalPreviewSize returns the optimal size for the camera UI
+     * @param sizes
+     * @param w
+     * @param h
+     * @return optimalSize
+     */
     private Camera.Size getOptimalPreviewSize(List<Camera.Size> sizes, int w, int h) {
         final double ASPECT_TOLERANCE = 0.2;
         double targetRatio = (double) w / h;
@@ -370,9 +374,9 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
     @Override
     public void onRestart(){
         super.onRestart();
-        Log.v("Restart", "INside OnRestart");
+        Log.v("Restart", "Inside OnRestart");
         if (mCamera == null)
-            mCamera.open();
+            Camera.open();
     }
 
     @Override
@@ -380,16 +384,14 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         super.onResume();
         Log.v("Resume", "INside OnResume");
         if (mCamera == null)
-            mCamera.open();
+            Camera.open();
     }
 
     @Override
     public void onPause(){
         super.onPause();
         if(mCamera != null) {
-            Log.v("ONPAUSE", "INside on Pause");
-            // mCamera.release();
-            // mCamera = null;
+            Log.v("ONPAUSE", "Inside on Pause");
         }
 
     }
