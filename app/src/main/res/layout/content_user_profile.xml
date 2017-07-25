@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:background="#f4f7ed">
+
+    <RelativeLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <!-- Name Label -->
+
+        <TextView android:id="@+id/display_name"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            />
+
+
+        <!-- Email Label -->
+        <TextView android:id="@+id/display_email"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@+id/display_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email: "
+            />
+
+        <!-- Contact Label -->
+        <TextView android:id="@+id/display_number"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@+id/display_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact: "
+            />
+
+        <!-- Organization Label -->
+        <TextView android:id="@+id/display_organization"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@+id/display_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Organization: "
+            />
+
+
+    </RelativeLayout>
+
+</ScrollView>

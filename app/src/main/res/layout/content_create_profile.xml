@@ -18,60 +18,42 @@
 
         <!-- Name Label -->
 
-        <android.support.design.widget.TextInputLayout
+        <EditText android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:hint="Name"
+            android:textColorHint="#fff"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText android:id="@+id/input_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="Name"
-                android:textColorHint="#fff"/>
-        </android.support.design.widget.TextInputLayout>
+            android:layout_marginBottom="8dp"/>
 
 
 
         <!--  Email Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText android:id="@+id/input_email"
+        <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="Email"
-                android:textColorHint="#fff"/>
-        </android.support.design.widget.TextInputLayout>
+                android:textColorHint="#fff"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
 
 
 
         <!-- Contact Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
 
             <EditText android:id="@+id/input_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:hint="Phone Number"/>
-        </android.support.design.widget.TextInputLayout>
+                android:hint="Phone Number"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
 
 
         <!-- Organizaton Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
 
             <EditText
                 android:layout_width="match_parent"
@@ -79,8 +61,10 @@
                 android:id="@+id/input_organization"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
-                android:hint="Organization"/>
-        </android.support.design.widget.TextInputLayout>
+                android:hint="Organization"
+                android:layout_marginTop="8dp"
+                />
+
 
 
 
