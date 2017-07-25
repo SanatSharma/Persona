@@ -268,7 +268,7 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
     Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
         @SuppressWarnings("ConstantConditions")
         public void onPictureTaken(byte[] data, Camera c) {
-            
+
 
             try {
                 File f = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/"
