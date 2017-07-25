@@ -3,6 +3,7 @@ package com.example.t_sashar.persona;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -17,9 +18,15 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.Exchanger;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -78,6 +85,7 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
     SurfaceView mSurfaceView;
     SurfaceHolder mSurfaceHolder;
     Camera mCamera;
+    Button cameraButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,15 +100,11 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         getSupportActionBar().hide();
 
 
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-
         mSurfaceView = (SurfaceView) findViewById(R.id.camera);
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(this);
         mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        cameraButton = (Button) findViewById(R.id.take_picture_button);
 
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CAMERA}, 50);
@@ -112,6 +116,13 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         mCamera = Camera.open();
 
         Log.v("Camera opened",mCamera.getParameters().getFlashMode());
+
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCamera.takePicture(null,null, mPictureCallback);
+            }
+        });
     }
 
     private Thread cameraThread = null;
@@ -171,6 +182,8 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
     }
+
+
 
 
     @Override
@@ -251,6 +264,34 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         }
         return optimalSize;
     }
+
+    Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
+        @SuppressWarnings("ConstantConditions")
+        public void onPictureTaken(byte[] data, Camera c) {
+            c.startPreview();
+
+            try {
+                File f = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/"
+                        + System.currentTimeMillis() + ".jpeg");
+
+                Log.v("File", f.getAbsolutePath());
+
+               // FileOutputStream outStream = new FileOutputStream(f);
+               // outStream.write(data);
+               // outStream.close();
+
+                Log.v("LOC", Environment.getExternalStorageDirectory().getAbsolutePath());
+
+                String file_string = f.toString();
+
+            } catch (Exception e) {
+                Log.v("Failure", e.toString());
+            }
+        }
+
+    };
+
+
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
