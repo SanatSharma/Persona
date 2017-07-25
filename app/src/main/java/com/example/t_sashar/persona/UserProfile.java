@@ -1,5 +1,6 @@
 package com.example.t_sashar.persona;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ public class UserProfile extends AppCompatActivity {
     TextView organization_display;
     String user_name = "", user_email = "", user_number = "", user_organization = "";
     final String PREFS_NAME = "MyPrefsFile";
+    Button qr_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class UserProfile extends AppCompatActivity {
         email_display = (TextView) findViewById(R.id.display_email);
         number_display = (TextView) findViewById(R.id.display_number);
         organization_display = (TextView) findViewById(R.id.display_organization);
+        qr_button = (Button) findViewById(R.id.qr_button);
 
         SharedPreferences profile = getSharedPreferences(PREFS_NAME, 0);
 
@@ -59,6 +63,14 @@ public class UserProfile extends AppCompatActivity {
             organization_display.setText(String.format("%s %s",
                     organization_display.getText().toString(), user_organization));
         }
+
+        qr_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), DisplayUserQR.class);
+                startActivity(i);
+            }
+        });
 
     }
 

@@ -57,6 +57,18 @@
             android:text="Organization: "
             />
 
+        <!-- QRCode -->
+        <Button
+            android:layout_below="@id/display_organization"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="150dp"
+            android:padding="12dp"
+            android:id="@+id/qr_button"
+            android:layout_centerHorizontal="true"
+            android:text="Display QRCode"
+            android:background="#f60"/>
+
 
     </RelativeLayout>
 

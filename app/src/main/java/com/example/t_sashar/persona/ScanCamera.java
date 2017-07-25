@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Exchanger;
 
+import static android.hardware.Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -197,6 +199,8 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         Camera.Parameters p = mCamera.getParameters();
         List<Camera.Size> previewSizes = p.getSupportedPreviewSizes();
         p.set("orientation", "portrait");
+
+        p.setFocusMode(FOCUS_MODE_CONTINUOUS_PICTURE);
 
         Camera.Size prevSize = getOptimalPreviewSize(previewSizes, w, h);
 
@@ -393,6 +397,5 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         if(mCamera != null) {
             Log.v("ONPAUSE", "Inside on Pause");
         }
-
     }
 }
