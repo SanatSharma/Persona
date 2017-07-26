@@ -73,8 +73,6 @@ public class CreateProfile extends AppCompatActivity {
                 editor.putString("organization", org_pref);
                 editor.commit();
 
-                Log.v("NAMEEEEEEEE", getSharedPreferences(PREFS_NAME, 0).getString("name", "0"));
-
 
                 if (name_pref.equals("") || email_pref.equals("") || number_pref.equals("") ||
                         org_pref.equals("") ) {

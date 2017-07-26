@@ -19,6 +19,7 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 
@@ -140,10 +141,16 @@ public class ScanQRcode extends AppCompatActivity {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
 
                 if (barcodes.size() != 0) {
+                   // Toast.makeText(getApplicationContext(), barcodes.valueAt(0).displayValue, Toast.LENGTH_SHORT).show();
+                    QueryDBWithID query = new QueryDBWithID(getApplicationContext(), barcodes.valueAt(0).displayValue);
+                    JsonObject json_item = query.getContact();
+                    Log.d("Name", json_item.getAsJsonPrimitive("name").getAsString());
+
                     qrInfo.post(new Runnable() {
                         public void run() {
-//                            Toast.makeText(ScanQRcode.this, barcodes.valueAt(0).displayValue, Toast.LENGTH_SHORT).show();
+                            Log.d("NOTE", "Got answer");
                             qrInfo.setText(barcodes.valueAt(0).displayValue);
+                            //QueryDBWithID query = new QueryDBWithID(getApplicationContext(), barcodes.valueAt(0).displayValue);
                         }
                     });
                 }
