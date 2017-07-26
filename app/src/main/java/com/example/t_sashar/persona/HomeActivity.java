@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), ScanCamera.class);
+                Intent i = new Intent(getApplicationContext(), ScanQRcode.class);
                 startActivity(i);
             }
         });

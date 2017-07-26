@@ -33,7 +33,7 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ScanCamera"
+            android:name=".ScanQRcode"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_scan_camera"
             android:theme="@style/FullscreenTheme" />

@@ -21,6 +21,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -120,11 +124,20 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
 
         Log.v("Camera opened",mCamera.getParameters().getFlashMode());
 
+        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
+
+        final CameraSource cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).build();
+
         // take a picture when the camera button is clicked
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCamera.takePicture(null,null, mPictureCallback);
+                try {
+                    cameraSource.start(mSurfaceHolder);
+                } catch (IOException ie) {
+                    Log.e("CAMERA SOURCE", ie.getMessage());
+                }
+                //mCamera.takePicture(null,null, mPictureCallback);
             }
         });
     }
