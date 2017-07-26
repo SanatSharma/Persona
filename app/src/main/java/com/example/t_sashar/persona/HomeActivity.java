@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         mContactsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), UserProfile.class);
+                Intent i = new Intent(getApplicationContext(), ContactsActivity.class);
                 startActivity(i);
             }
 

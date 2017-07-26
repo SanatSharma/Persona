@@ -33,7 +33,7 @@
         android:layout_margin="25dp"
         android:id="@+id/contacts_button"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/scan_button"
+        android:layout_below="@+id/profile_button"
         android:text="View Added Contacts"/>
 
 </RelativeLayout>
