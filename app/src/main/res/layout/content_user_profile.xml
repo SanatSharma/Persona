@@ -4,71 +4,84 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true"
-    android:background="#f4f7ed">
+    android:background="#f48942"
+    android:fitsSystemWindows="true">
 
     <RelativeLayout
 
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:orientation="vertical"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingRight="24dp"
+        android:paddingTop="56dp">
 
         <!-- Name Label -->
 
-        <TextView android:id="@+id/display_name"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
+        <TextView
+            android:id="@+id/display_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name: "
-            />
-
-
-        <!-- Email Label -->
-        <TextView android:id="@+id/display_email"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_below="@+id/display_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email: "
-            />
-
-        <!-- Contact Label -->
-        <TextView android:id="@+id/display_number"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_below="@+id/display_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Contact: "
-            />
+            android:text="@string/user_name"
+            android:textColor="#FFFFFF"
+            android:textSize="70dp"
+            android:layout_marginTop="114dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
 
         <!-- Organization Label -->
-        <TextView android:id="@+id/display_organization"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:layout_below="@+id/display_number"
+
+        <TextView
+            android:id="@+id/display_organization"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Organization: "
-            />
+            android:layout_marginTop="16dp"
+            android:text="@string/organization"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp"
+            android:layout_below="@+id/display_name"
+            android:layout_alignParentStart="true" />
+
+        <!-- Phone Label -->
+
+        <TextView
+            android:id="@+id/display_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/phone"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:layout_below="@+id/display_organization"
+            android:layout_alignParentStart="true" />
+
+        <!-- Email Label -->
+
+        <TextView
+            android:id="@+id/display_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="@string/email"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:layout_marginTop="22dp"
+            android:layout_below="@+id/display_phone"
+            android:layout_alignParentStart="true" />
 
         <!-- QRCode -->
         <Button
-            android:layout_below="@id/display_organization"
+            android:id="@+id/qr_button"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="30dp"
+            android:background="#f9d66b"
+            android:elevation="10dp"
             android:padding="12dp"
-            android:id="@+id/qr_button"
-            android:layout_centerHorizontal="true"
             android:text="Display QRCode"
-            android:background="#f60"/>
-
+            android:layout_below="@+id/display_email"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
