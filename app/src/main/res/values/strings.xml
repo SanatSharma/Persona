@@ -8,4 +8,8 @@
     <string name="title_activity_create_profile">CreateProfile</string>
     <string name="title_activity_user_profile">UserProfile</string>
     <string name="title_activity_display_user_qr">DisplayUserQR</string>
+    <string name="user_name">DisplayName</string>
+    <string name="organization">Organization</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
 </resources>
