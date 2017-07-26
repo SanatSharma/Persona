@@ -27,4 +27,13 @@
         android:text="View Profile"
         />
 
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_margin="25dp"
+        android:id="@+id/contacts_button"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/scan_button"
+        android:text="View Added Contacts"/>
+
 </RelativeLayout>
