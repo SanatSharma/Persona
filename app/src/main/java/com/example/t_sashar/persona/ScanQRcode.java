@@ -1,8 +1,8 @@
 package com.example.t_sashar.persona;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -150,7 +149,7 @@ public class ScanQRcode extends AppCompatActivity {
                         public void run() {
                             Log.d("NOTE", "Got answer");
                             qrInfo.setText(barcodes.valueAt(0).displayValue);
-                            //QueryDBWithID query = new QueryDBWithID(getApplicationContext(), barcodes.valueAt(0).displayValue);
+//                            cameraSource.release();
                         }
                     });
                 }
