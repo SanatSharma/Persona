@@ -44,7 +44,7 @@ public class UserProfile extends AppCompatActivity {
         user_name = profile.getString("name", "0");
         user_email = profile.getString("email", "0");
         user_number = profile.getString("number", "0");
-        user_organization = profile.getString("organization", "0");
+        user_organization = profile.getString("id", "0");
 
         if(user_name == "" || user_email == "" || user_organization == "" || user_number == "") {
             Toast.makeText(getApplicationContext(), "One or more of the fields are empty!!", Toast.LENGTH_SHORT).show();

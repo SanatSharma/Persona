@@ -32,8 +32,6 @@ public class CreateProfile extends AppCompatActivity {
     private EditText number;
     private EditText organization;
     String name_pref = "", email_pref = "", number_pref = "", org_pref = "";
-    private MobileServiceClient mClient;
-    private BusinessCard mBusinessCard;
 
 
     @Override
@@ -69,72 +67,27 @@ public class CreateProfile extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = profile.edit();
 
-                Log.v("HEERERRERERER", name_pref);
-
                 editor.putString("name", name_pref);
                 editor.putString("email", email_pref);
                 editor.putString("number", number_pref);
                 editor.putString("organization", org_pref);
-                editor.apply();
+                editor.commit();
 
                 Log.v("NAMEEEEEEEE", getSharedPreferences(PREFS_NAME, 0).getString("name", "0"));
 
-                try {
-                    mClient = new MobileServiceClient("https://hackathon-persona.azurewebsites.net",
-                            getApplicationContext());
-                } catch (MalformedURLException e) {
-                    new Exception("There was an error creating the Mobile Service. Verify the URL");
-                }
 
                 if (name_pref.equals("") || email_pref.equals("") || number_pref.equals("") ||
                         org_pref.equals("") ) {
                     Toast.makeText(getApplicationContext(), "Blank Field, please enter all values and submit", Toast.LENGTH_SHORT).show();
                 } else {
-                    sendServerMessage(name_pref, email_pref, number_pref, org_pref);
-
+                    new CreateProfileServerCall(getApplicationContext(), profile, name_pref, email_pref, number_pref, org_pref);
                     Intent i = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(i);
                 }
             }
         });
 
-        // send the data to the server
-       // <TODO>
-
     }
 
-    private void sendServerMessage(String name, String email, String number, String org) {
-        mBusinessCard = new BusinessCard(name, email, number, org);
-        new inserter().execute(mBusinessCard, mBusinessCard, mBusinessCard);
-    }
 
-    private class inserter extends AsyncTask<BusinessCard, BusinessCard, BusinessCard> {
-        private MobileServiceJsonTable mJsonToDoTable;
-
-        protected BusinessCard doInBackground(BusinessCard... card) {
-            try {
-                mJsonToDoTable = mClient.getTable("BusinessCard");
-                JsonObject jsonItem = new JsonObject();
-                jsonItem.addProperty("name", mBusinessCard.user_name);
-                jsonItem.addProperty("email", mBusinessCard.user_email);
-                jsonItem.addProperty("number", mBusinessCard.user_number);
-                jsonItem.addProperty("organization", mBusinessCard.user_organization);
-                jsonItem.addProperty("contacts", mBusinessCard.tagMap.toString());
-                JsonObject insertedItem = mJsonToDoTable
-                        .insert(jsonItem)
-                        .get();
-                SharedPreferences.Editor editor = profile.edit();
-                editor.putString("id", insertedItem.getAsJsonPrimitive("id").getAsString());
-                editor.apply();
-            }
-            catch(Exception e) {
-                Log.v("NOTE", e.getMessage());
-            }
-            return null;
-        }
-        protected BusinessCard onPostExecute() {
-            Log.v("NOTE", "DONE");
-            return null;
-        }
-    }
 }

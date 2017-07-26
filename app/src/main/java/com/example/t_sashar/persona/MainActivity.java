@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mBusinessCard = new BusinessCard("Name", "Email", "User");
+        mBusinessCard = new BusinessCard("Name", "Email", "Number", "User");
         try {
             mClient = new MobileServiceClient("https://hackathon-persona.azurewebsites.net",
                     this);
