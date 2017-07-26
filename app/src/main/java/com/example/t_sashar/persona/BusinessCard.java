@@ -10,13 +10,15 @@ import java.util.HashMap;
 public class BusinessCard {
     public String user_name;
     public String user_email;
+    public String user_number;
     public String user_organization;
     public String Id;
     public HashMap<String, ArrayList<String>> tagMap;
 
-    public BusinessCard(String name, String email, String org) {
+    public BusinessCard(String name, String email, String number, String org) {
         this.user_name = name;
         this.user_email = email;
+        this.user_number = number;
         this.user_organization = org;
 
         HashMap<String, ArrayList<String>> map = new HashMap<>();

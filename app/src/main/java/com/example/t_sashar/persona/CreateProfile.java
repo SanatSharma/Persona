@@ -2,6 +2,7 @@ package com.example.t_sashar.persona;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,12 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.table.MobileServiceJsonTable;
+
+import java.net.MalformedURLException;
+
 public class CreateProfile extends AppCompatActivity {
 
     SharedPreferences profile;
@@ -25,6 +32,9 @@ public class CreateProfile extends AppCompatActivity {
     private EditText number;
     private EditText organization;
     String name_pref = "", email_pref = "", number_pref = "", org_pref = "";
+    private MobileServiceClient mClient;
+    private BusinessCard mBusinessCard;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +79,18 @@ public class CreateProfile extends AppCompatActivity {
 
                 Log.v("NAMEEEEEEEE", getSharedPreferences(PREFS_NAME, 0).getString("name", "0"));
 
+                try {
+                    mClient = new MobileServiceClient("https://hackathon-persona.azurewebsites.net",
+                            getApplicationContext());
+                } catch (MalformedURLException e) {
+                    new Exception("There was an error creating the Mobile Service. Verify the URL");
+                }
+
                 if (name_pref.equals("") || email_pref.equals("") || number_pref.equals("") ||
                         org_pref.equals("") ) {
                     Toast.makeText(getApplicationContext(), "Blank Field, please enter all values and submit", Toast.LENGTH_SHORT).show();
                 } else {
-                    //sendServerMessage()
+                    sendServerMessage(name_pref, email_pref, number_pref, org_pref);
 
                     Intent i = new Intent(getApplicationContext(), HomeActivity.class);
                     startActivity(i);
@@ -86,4 +103,38 @@ public class CreateProfile extends AppCompatActivity {
 
     }
 
+    private void sendServerMessage(String name, String email, String number, String org) {
+        mBusinessCard = new BusinessCard(name, email, number, org);
+        new inserter().execute(mBusinessCard, mBusinessCard, mBusinessCard);
+    }
+
+    private class inserter extends AsyncTask<BusinessCard, BusinessCard, BusinessCard> {
+        private MobileServiceJsonTable mJsonToDoTable;
+
+        protected BusinessCard doInBackground(BusinessCard... card) {
+            try {
+                mJsonToDoTable = mClient.getTable("BusinessCard");
+                JsonObject jsonItem = new JsonObject();
+                jsonItem.addProperty("name", mBusinessCard.user_name);
+                jsonItem.addProperty("email", mBusinessCard.user_email);
+                jsonItem.addProperty("number", mBusinessCard.user_number);
+                jsonItem.addProperty("organization", mBusinessCard.user_organization);
+                jsonItem.addProperty("contacts", mBusinessCard.tagMap.toString());
+                JsonObject insertedItem = mJsonToDoTable
+                        .insert(jsonItem)
+                        .get();
+                SharedPreferences.Editor editor = profile.edit();
+                editor.putString("id", insertedItem.getAsJsonPrimitive("id").getAsString());
+                editor.apply();
+            }
+            catch(Exception e) {
+                Log.v("NOTE", e.getMessage());
+            }
+            return null;
+        }
+        protected BusinessCard onPostExecute() {
+            Log.v("NOTE", "DONE");
+            return null;
+        }
+    }
 }
