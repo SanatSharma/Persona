@@ -30,15 +30,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         mBusinessCard = new BusinessCard("Name", "Email", "User");
         try {
             mClient = new MobileServiceClient("https://hackathon-persona.azurewebsites.net",
@@ -49,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         mClient.getTable(BusinessCard.class).insert(mBusinessCard);
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if(getSupportActionBar() != null)
+            getSupportActionBar().hide();
 
         if (settings.getString("name", "0") == "0") {
             // profile has not been made

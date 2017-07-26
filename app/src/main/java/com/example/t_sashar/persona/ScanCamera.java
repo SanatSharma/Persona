@@ -112,7 +112,7 @@ public class ScanCamera extends AppCompatActivity implements SurfaceHolder.Callb
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(this);
         mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        cameraButton = (Button) findViewById(R.id.take_picture_button);
+      //  cameraButton = (Button) findViewById(R.id.take_picture_button);
 
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.CAMERA}, 50);

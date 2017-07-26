@@ -102,6 +102,9 @@ public class ScanQRcode extends AppCompatActivity {
 
         cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).build();
 
+        if(getSupportActionBar() != null)
+            getSupportActionBar().hide();
+
         mSurfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -139,10 +142,10 @@ public class ScanQRcode extends AppCompatActivity {
                 if (barcodes.size() != 0) {
                     qrInfo.post(new Runnable() {
                         public void run() {
+//                            Toast.makeText(ScanQRcode.this, barcodes.valueAt(0).displayValue, Toast.LENGTH_SHORT).show();
                             qrInfo.setText(barcodes.valueAt(0).displayValue);
                         }
                     });
-                    //Toast.makeText(ScanQRcode.this, barcodes.valueAt(0).displayValue, Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -30,15 +30,6 @@ public class UserProfile extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         name_display = (TextView) findViewById(R.id.display_name);
         email_display = (TextView) findViewById(R.id.display_email);
         number_display = (TextView) findViewById(R.id.display_number);
@@ -46,6 +37,9 @@ public class UserProfile extends AppCompatActivity {
         qr_button = (Button) findViewById(R.id.qr_button);
 
         SharedPreferences profile = getSharedPreferences(PREFS_NAME, 0);
+
+        if(getSupportActionBar()!=null)
+            getSupportActionBar().hide();
 
         user_name = profile.getString("name", "0");
         user_email = profile.getString("email", "0");

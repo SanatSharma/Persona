@@ -33,18 +33,13 @@ public class CreateProfile extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        if(getSupportActionBar() != null)
+            getSupportActionBar().hide();
 
         submit = (Button) findViewById(R.id.btn_signup);
         name = (EditText) findViewById(R.id.input_name);
         email = (EditText) findViewById(R.id.input_email);
+
         number = (EditText) findViewById(R.id.input_number);
         organization = (EditText) findViewById(R.id.input_organization);
 

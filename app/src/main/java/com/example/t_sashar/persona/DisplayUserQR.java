@@ -35,18 +35,12 @@ public class DisplayUserQR extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         imageView = (ImageView) findViewById(R.id.qr_image);
         preferences = getSharedPreferences(PREFS_NAME, 0);
 //        user_id = preferences.getString("user_id", "0");
+
+        if(getSupportActionBar()!=null)
+            getSupportActionBar().hide();
 
         try {
             textToImageEncode("Brian-Ikenna");
