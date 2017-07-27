@@ -96,7 +96,7 @@ public class ScanQRcode extends AppCompatActivity {
 
         mSurfaceView = (SurfaceView) findViewById(R.id.camera);
         mSurfaceHolder = mSurfaceView.getHolder();
-        //cameraButton = (Button) findViewById(R.id.take_picture_button);
+        //cameraButton = (Button) findViewById(R.addedContactId.take_picture_button);
         qrInfo = (TextView) findViewById(R.id.code_info);
         qrInfo.setTextColor(Color.parseColor("#FFFFFF"));
         final BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();

@@ -52,7 +52,7 @@ public class CreateProfileServerCall {
                 jsonItem.addProperty("contacts", mBusinessCard.tagMap.toString());
                 JsonObject insertedItem = mJsonToDoTable.insert(jsonItem).get();
                 SharedPreferences.Editor editor = profile.edit();
-                editor.putString("id", insertedItem.getAsJsonPrimitive("id").getAsString());
+                editor.putString("addedContactId", insertedItem.getAsJsonPrimitive("addedContactId").getAsString());
                 editor.apply();
             }
             catch(Exception e) {

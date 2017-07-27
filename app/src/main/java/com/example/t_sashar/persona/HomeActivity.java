@@ -14,6 +14,7 @@ public class HomeActivity extends AppCompatActivity {
 
     Button scanButton;
     Button profileButton;
+    Button mContactsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
 
         scanButton = (Button) findViewById(R.id.scan_button);
         profileButton = (Button) findViewById(R.id.profile_button);
+        mContactsButton = (Button) findViewById(R.id.contacts_button);
 
         Log.v("NAMESAVED", getSharedPreferences("MyPrefsFile", 0).getString("name", "0"));
 
@@ -44,6 +46,15 @@ public class HomeActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), UserProfile.class);
                 startActivity(i);
             }
+        });
+
+        mContactsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), ContactsActivity.class);
+                startActivity(i);
+            }
+
         });
     }
 

@@ -49,6 +49,10 @@
             android:name=".DisplayUserQR"
             android:label="@string/title_activity_display_user_qr"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ContactsActivity"
+            android:label="@string/title_activity_contacts"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
