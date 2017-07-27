@@ -20,7 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_addedUser_profile" />
+    <include layout="@layout/content_added_contact_profile" />
 
 
 </android.support.design.widget.CoordinatorLayout>

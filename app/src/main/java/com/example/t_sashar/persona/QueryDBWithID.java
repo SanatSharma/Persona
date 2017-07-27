@@ -23,6 +23,9 @@ public class QueryDBWithID {
     private String id;
 
     QueryDBWithID(Context context, String id) {
+
+        Log.d("Check", "Getting here");
+        Log.d("id", id);
         this.context = context;
         this.id = id;
         try {
@@ -35,13 +38,17 @@ public class QueryDBWithID {
 
     public JsonObject getContact(){
         mJsonToDoTable = mClient.getTable("BusinessCard");
+        Log.d("Table name", mJsonToDoTable.getTableName());
         JsonObject jsonItem = new JsonObject();
         try {
             jsonItem =  mJsonToDoTable.lookUp(id).get();
+            Log.d("Got Contact", jsonItem.getAsJsonPrimitive("name").getAsString());
             return jsonItem;
         } catch (InterruptedException e) {
+            Log.d("Error", "Interrupted exception");
             e.printStackTrace();
         } catch (ExecutionException e) {
+            Log.d("Error", "General exception");
             e.printStackTrace();
         }
         return null;

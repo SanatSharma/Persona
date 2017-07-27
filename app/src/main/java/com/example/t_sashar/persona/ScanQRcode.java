@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -141,17 +142,28 @@ public class ScanQRcode extends AppCompatActivity {
 
                 if (barcodes.size() != 0) {
                    // Toast.makeText(getApplicationContext(), barcodes.valueAt(0).displayValue, Toast.LENGTH_SHORT).show();
-                    QueryDBWithID query = new QueryDBWithID(getApplicationContext(), barcodes.valueAt(0).displayValue);
-                    JsonObject json_item = query.getContact();
-                    Log.d("Name", json_item.getAsJsonPrimitive("name").getAsString());
 
                     qrInfo.post(new Runnable() {
                         public void run() {
                             Log.d("NOTE", "Got answer");
+
                             qrInfo.setText(barcodes.valueAt(0).displayValue);
 //                            cameraSource.release();
                         }
                     });
+
+                    // create a handler to post messages to the main thread
+                    Handler mHandler = new Handler(getMainLooper());
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("here", "Getting here");
+                            QueryDBWithID query = new QueryDBWithID(getApplicationContext(), barcodes.valueAt(0).displayValue);
+                            JsonObject json_item = query.getContact();
+                            Log.d("Name", json_item.getAsJsonPrimitive("name").getAsString());
+                        }
+                    });
+
                 }
             }
         });

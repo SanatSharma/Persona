@@ -51,7 +51,6 @@ public class UserProfile extends AppCompatActivity {
         }
         else{
             name_display.setText(String.format("%s %s",name_display.getText().toString(), user_name));
-            Log.v("HEREERTRETERTERT NAME", profile.getString("name", "0"));
             email_display.setText(String.format("%s %s", email_display.getText().toString(), user_email));
             number_display.setText(String.format("%s %s", number_display.getText().toString(), user_number));
             organization_display.setText(String.format("%s %s",
