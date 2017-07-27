@@ -33,7 +33,8 @@ public class AddedContact extends AppCompatActivity {
     String user_number;
     String user_organization;
 
-    String id;
+    String myId;
+    String addedContactId;
 
     ArrayList<String> tags;
 
@@ -68,7 +69,7 @@ public class AddedContact extends AppCompatActivity {
                     getAllTags();
                 }
 
-                new AddedContactServerCall(getApplicationContext(), id, tags);
+                new AddedContactServerCall(getApplicationContext(), myId, addedContactId, tags);
 
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
@@ -82,7 +83,8 @@ public class AddedContact extends AppCompatActivity {
             this.user_email = obj.getString("user_email");
             this.user_number = obj.getString("user_number");
             this.user_organization = obj.getString("user_organization");
-            this.id = obj.getString("added_id");
+            this.myId = obj.getString("id");
+            this.addedContactId = obj.getString("added_id");
         } catch (JSONException e) {
             e.printStackTrace();
         }

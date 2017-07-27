@@ -33,7 +33,7 @@ public class ContactsServerCall {
             Log.d("URL", e.getMessage());
         }
         mProfile = profile;
-        String id = mProfile.getString("id", "0");
+        String id = mProfile.getString("addedContactId", "0");
         new ContactsServerCall.inserter().execute(id, id, id);
     }
 
