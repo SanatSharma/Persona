@@ -54,7 +54,11 @@ public class AddedContactServerCall {
 
                 Log.v("Retrieved Row-Col", result.get(0).user_name);
 
-                // TODO: 7/26/2017 Insert addContactId and tags arraylist into the contacts map of the calling user
+                BusinessCard newContact = result.get(0);
+
+                newContact.insertContact(addedContactId, tags);
+
+                result.set(0, newContact);
 
             } catch (InterruptedException e) {
 

@@ -10,7 +10,7 @@
 
     <Button
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_margin="25dp"
         android:id="@+id/scan_button"
         android:layout_gravity="center_horizontal"
@@ -19,7 +19,7 @@
 
     <Button
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_margin="25dp"
         android:id="@+id/profile_button"
         android:layout_gravity="center_horizontal"
@@ -29,11 +29,20 @@
 
     <Button
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_margin="25dp"
         android:id="@+id/contacts_button"
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/profile_button"
         android:text="View Added Contacts"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_margin="25dp"
+        android:id="@+id/search_button"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/contacts_button"
+        android:text="Search Contacts"/>
 
 </RelativeLayout>

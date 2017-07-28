@@ -2,6 +2,7 @@ package com.example.t_sashar.persona;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +31,12 @@ public class BusinessCard implements Parcelable{
         test_tags.add("Tag2");
         map.put("Id1", test_tags);
         tagMap = map;
+    }
+
+    public void insertContact(String id, ArrayList<String> tags){
+        if(!this.tagMap.containsKey(id))
+            tagMap.put(id, tags);
+        Log.v("Add new contact: ", id);
     }
 
     @Override
